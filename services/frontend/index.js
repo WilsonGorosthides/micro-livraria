@@ -41,7 +41,8 @@ function newBook(book) {
 }
 
 function calculateShipping(id, cep) {
-    fetch('/api/shipping/' + cep)
+    // ALTERAÇÃO AQUI: Adicionar 'http://localhost:8080' ao início da URL
+    fetch('http://localhost:8080/api/shipping/' + cep)
         .then((data) => {
             if (data.ok) {
                 return data.json();
@@ -58,7 +59,8 @@ function calculateShipping(id, cep) {
 }
 
 function fetchReviews(bookId) {
-    fetch(`/api/reviews/${bookId}`)
+    // ALTERAÇÃO AQUI: Adicionar 'http://localhost:8080' ao início da URL
+    fetch(`http://localhost:8080/api/reviews/${bookId}`)
         .then((data) => {
             if (data.ok) {
                 return data.json();
@@ -177,7 +179,8 @@ function fetchReviews(bookId) {
 }
 
 function submitReview(reviewData, bookId) {
-    fetch('/api/reviews', {
+    // ALTERAÇÃO AQUI: Adicionar 'http://localhost:8080' ao início da URL
+    fetch('http://localhost:8080/api/reviews', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -212,7 +215,8 @@ function loadReviewCounts() {
         const bookId = bookElem.getAttribute('data-id');
         if (bookId) {
             // Fetch reviews just to update the count
-            fetch(`/api/reviews/${bookId}`)
+            // ALTERAÇÃO AQUI: Adicionar 'http://localhost:8080' ao início da URL
+            fetch(`http://localhost:8080/api/reviews/${bookId}`)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data && data.reviews) {
@@ -231,7 +235,8 @@ function loadReviewCounts() {
 document.addEventListener('DOMContentLoaded', function () {
     const books = document.querySelector('.books');
 
-    fetch('/api/products')
+    // ALTERAÇÃO AQUI: Adicionar 'http://localhost:8080' ao início da URL
+    fetch('http://localhost:8080/api/products')
         .then((data) => {
             if (data.ok) {
                 return data.json();
